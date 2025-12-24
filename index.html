@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Ponde Bhavani — Portfolio</title>
+  <meta name="theme-color" content="#000a14">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root{
+      --bg-top:#000000;
+      --bg-mid:#001227;
+      --bg-bot:#00243b;
+      --text:#e9eef8;
+      --muted:#99a3b3;
+      --accent:#7c5cff;
+      --accent-2:#4dd0e1;
+      --glass:rgba(255,255,255,0.03);
+      --card-shadow:0 18px 55px rgba(0,0,0,0.7);
+      --section-bg:rgba(255,255,255,0.03);
+    }
+
+    /* DARK THEME */
+    :root[data-theme="dark"]{
+      --bg-top:#000000;
+      --bg-mid:#001227;
+      --bg-bot:#00243b;
+      --text:#e9eef8;
+      --muted:#99a3b3;
+      --section-bg:rgba(255,255,255,0.03);
+    }
+
+    /* LIGHT THEME */
+    :root[data-theme="light"]{
+      --text:#111827;
+      --muted:#4b5563;
+      --accent:#6366f1;
+      --accent-2:#22c1c3;
+      --section-bg:#cbe5f1;          /* light-blue tiles */
+    }
+
+    html,body{
+      height:100%;
+      margin:0;
+      font-family:'Inter',sans-serif;
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      overflow-x:hidden;
+    }
+
+    /* dark background */
+    :root[data-theme="dark"] body{
+      background:linear-gradient(180deg,var(--bg-top) 0%, var(--bg-mid) 45%, var(--bg-bot) 100%);
+    }
+
+    /* light background image */
+    :root[data-theme="light"] body{
+      background:url("Multicolor-gradient.jpg")
+                center/cover no-repeat fixed;
+    }
+
+    header{
+      position:sticky;
+      top:0;
+      padding:12px 20px;
+      background:linear-gradient(180deg,rgba(0,0,0,0.45),transparent);
+      backdrop-filter:blur(6px);
+      z-index:40;
+      border-bottom:1px solid var(--glass);
+    }
+    .nav-wrap{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:12px}
+    .logo{font-weight:800;color:var(--accent);font-family:'Poppins',sans-serif}
+    .nav-actions{display:flex;gap:10px;align-items:center}
+    .btn{background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#fff;padding:9px 14px;border-radius:8px;border:none;font-weight:700;cursor:pointer;text-decoration:none}
+    .btn.secondary{background:transparent;border:1.5px solid var(--glass);color:var(--text)}
+    main{max-width:1200px;margin:28px auto;padding:0 20px}
+
+    /* HERO */
+    .hero{
+      margin:0 auto 28px;
+      display:flex;
+      justify-content:center;
+    }
+
+    .hero-card{
+      width:100%;
+      max-width:1000px;
+      display:grid;
+      grid-template-columns:1.2fr 3fr; /* left image, right data */
+      gap:32px;
+      align-items:center;
+      padding:22px 28px;
+      background:var(--section-bg);
+      border-radius:18px;
+      border:1px solid var(--glass);
+      box-shadow:var(--card-shadow);
+      box-sizing:border-box;
+    }
+
+    .hero-right{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+    }
+
+    /* big rectangle profile tile */
+    .hero-avatar{
+      width:220px;
+      height:260px;
+      border-radius:18px;
+      overflow:hidden;
+      border:3px solid rgba(255,255,255,0.35);
+      box-shadow:0 20px 45px rgba(0,0,0,0.85);
+      flex-shrink:0;
+      background:rgba(0,0,0,0.15);
+    }
+
+    .hero-avatar img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+
+    .hero-left{
+      min-width:0;
+    }
+
+    .hero-left .tag{
+      display:inline-block;
+      padding:6px 12px;
+      background:rgba(124,92,255,0.08);
+      color:var(--accent);
+      border-radius:999px;
+      font-weight:700;
+      margin-bottom:14px;
+      font-size:12px;
+    }
+
+    .hero-left h1{
+      margin:6px 0 10px;
+      font-family:'Poppins',sans-serif;
+      font-size:36px;
+      white-space:nowrap;
+      text-overflow:ellipsis;
+      overflow:hidden;
+      max-width:100%;
+    }
+
+    .hero-left p.lead{
+      color:var(--muted);
+      margin:4px 0 14px;
+      line-height:1.45;
+      font-size:14px;
+      max-height:3.2em;   /* about two lines */
+      overflow:hidden;
+    }
+
+    .hero-cta{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin:10px 0 8px;
+    }
+
+    .contact-small{
+      color:var(--muted);
+      font-size:13px;
+      margin-top:6px;
+      line-height:1.4;
+    }
+
+    section{
+      background:var(--section-bg);
+      border-radius:12px;
+      padding:22px;
+      border:1px solid var(--glass);
+      box-shadow:var(--card-shadow);
+      margin-bottom:24px;
+    }
+    h2{margin:0 0 14px;font-family:'Poppins',sans-serif}
+
+/* PROJECTS – hero-style tiles */
+.projects-grid{
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+}
+
+.project-card{
+  display:grid;
+  grid-template-columns:1.1fr 3fr;     /* image | text */
+  gap:18px;
+  align-items:center;
+  padding:16px 18px;
+  background:var(--section-bg);
+  border-radius:14px;
+  border:1px solid var(--glass);
+  box-shadow:var(--card-shadow);
+  box-sizing:border-box;
+}
+
+.project-thumb{
+  width:100%;
+  max-width:240px;
+  border-radius:12px;
+  overflow:hidden;
+  background:#07101a;
+  box-shadow:0 10px 28px rgba(0,0,0,0.7);
+  justify-self:center;
+}
+
+.project-thumb img{
+  width:100%;
+  height:100%;
+  aspect-ratio:16 / 9;
+  object-fit:cover;
+  display:block;
+}
+
+.project-content h3{
+  margin:0 0 6px;
+  font-family:'Poppins',sans-serif;
+  font-size:18px;
+}
+
+.project-content p{
+  margin:0 0 8px;
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.4;
+}
+
+.project-tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+}
+.project-tags .tag{
+  margin-top:0;
+}
+
+@media(max-width:800px){
+  .project-card{
+    grid-template-columns:1fr;
+    text-align:left;
+  }
+  .project-thumb{
+    max-width:100%;
+    justify-self:flex-start;
+  }
+}
+
+    /* skills */
+    .skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .skill-item{margin-bottom:12px}
+    .skill-label{display:flex;justify-content:space-between;font-weight:700;color:var(--text);margin-bottom:6px}
+    .bar{height:12px;background:rgba(255,255,255,0.03);border-radius:999px;overflow:hidden;border:1px solid var(--glass)}
+    .fill{height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--accent-2));transition:width 1.2s ease}
+
+    /* hobbies */
+    .hobbies-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px}
+    .hobby{padding:8px;border-radius:10px;background:rgba(255,255,255,0.01);border:1px solid var(--glass);text-align:center}
+    .hobby-img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:8px;margin-bottom:8px;display:block}
+    .hobby div{font-size:13px;color:var(--text)}
+
+    /* contact */
+    .contact-grid{display:flex;flex-direction:column;gap:8px}
+    .contact-item{display:flex;gap:10px;align-items:center;color:var(--muted)}
+    .socials{display:flex;gap:10px;margin-top:10px}
+    .socials a{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:999px;background:rgba(255,255,255,0.02);color:var(--accent);text-decoration:none;border:1px solid var(--glass)}
+
+    /* resume modal */
+    .modal-backdrop{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.7);z-index:120;padding:20px}
+    .modal{width:min(1100px,98%);height:min(90vh,920px);background:#071018;border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,0.04);display:flex;flex-direction:column}
+    .modal-header{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border-bottom:1px solid rgba(255,255,255,0.03)}
+    .modal-body{flex:1;background:#05080a}
+    .modal iframe{width:100%;height:100%;border:0}
+    .modal-backdrop.show{display:flex}
+
+    @media(max-width:900px){
+      .hero-card{
+        grid-template-columns:1fr;
+        text-align:left;
+      }
+      .hero-right{
+        justify-content:flex-start;
+        margin-bottom:10px;
+      }
+      .hero-left h1{
+        white-space:normal;
+      }
+    }
+
+    @media(max-width:640px){
+      .nav-wrap{padding:0 6px}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav-wrap">
+      <div class="logo">Ponde Bhavani</div>
+      <div class="nav-actions">
+        <button id="openResume" class="btn" aria-haspopup="dialog">Resume</button>
+        <a class="btn secondary" id="theme-toggle">Theme</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero" aria-labelledby="home-title">
+      <div class="hero-card">
+        <!-- LEFT: big rectangle profile -->
+        <div class="hero-right" role="img" aria-label="Profile photo">
+          <div class="hero-avatar">
+            <img src="bhavani.png" alt="Ponde Bhavani" onerror="this.style.display='none'">
+          </div>
+        </div>
+
+        <!-- RIGHT: data (3/4 width) -->
+        <div class="hero-left">
+          <!-- <div class="tag">Web Weaver | DSA Dynamo</div> -->
+           <div class="tag">Full Stack Developer | Java & DSA</div>
+
+          <h1 id="home-title">Ponde Bhavani</h1>
+          <p class="lead">
+            A versatile technical professional skilled in full‑stack web development, Java/DSA, Generative AI, and Power BI. Builds clean, data‑driven web applications with strong backend logic.
+          </p>
+
+          <div class="hero-cta">
+            <a class="btn" href="#projects">View Projects</a>
+            <a class="btn secondary" href="#contact">Contact</a>
+          </div>
+
+          <div class="contact-small">
+            <div>Email: <a href="mailto:bhavaniponde@gmail.com" style="color:var(--accent)">bhavaniponde@gmail.com</a></div>
+            <!-- <div>Phone: <span style="color:var(--muted)">+91 8247841219</span></div> -->
+            <div style="margin-top:6px">Location: Dharmavaram, Anantapur, Andhra Pradesh</div>
+            <div class="socials">
+              <a href="https://www.linkedin.com/in/bhavaniponde/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+              <a href="https://github.com/Bhavani8247" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESUME MODAL -->
+    <div id="resumeModal" class="modal-backdrop" role="dialog" aria-modal="true" aria-hidden="true">
+      <div class="modal" role="document">
+        <div class="modal-header">
+          <div style="font-weight:800">Resume — Ponde Bhavani</div>
+          <div style="display:flex;gap:8px;align-items:center">
+            <a href="resume.pdf" class="btn" target="_blank" rel="noopener">Open in new tab</a>
+            <button id="closeResume" class="btn secondary" aria-label="Close">Close</button>
+          </div>
+        </div>
+        <div class="modal-body">
+          <iframe id="resumeFrame" src="resume.pdf"></iframe>
+        </div>
+      </div>
+    </div>
+
+   <!-- PROJECTS -->
+<section id="projects">
+  <h2>Projects</h2>
+  <div class="projects-grid">
+
+    <article class="project-card" aria-labelledby="p1">
+      <div class="project-thumb">
+        <img src="expense-tracker.jpg" alt="Web-based expense tracker dashboard">
+      </div>
+      <div class="project-content">
+        <h3 id="p1">Expense Tracker</h3>
+        <p>Built a web‑based expense tracker to record, categorize, and visualize daily spending, helping users monitor budgets and analyze monthly expense patterns.</p>
+        <div class="project-tags">
+          <span class="tag">HTML</span>
+          <span class="tag">CSS</span>
+          <span class="tag">JavaScript</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="project-card" aria-labelledby="p2">
+      <div class="project-thumb">
+        <img src="capstone-project.jpg" alt="Netflix capstone recommendation engine">
+      </div>
+      <div class="project-content">
+        <h3 id="p2">Netflix Capstone Project</h3>
+        <p>Built and evaluated machine learning models for real‑world prediction and classification tasks, focusing on preprocessing, feature engineering, and hyperparameter tuning.</p>
+        <div class="project-tags">
+          <span class="tag">ML</span>
+          <span class="tag">Recommendation</span>
+          <span class="tag">Python</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="project-card" aria-labelledby="p3">
+      <div class="project-thumb">
+        <img src="farmconnect.jpg" alt="FarmConnect farmer‑customer platform">
+      </div>
+      <div class="project-content">
+        <h3 id="p3">FARMCONNECT — Farmer Customer Web Platform</h3>
+        <p>Designed and developed a responsive website using HTML, CSS, and JavaScript with clean layouts, navigation, and reusable components.</p>
+        <div class="project-tags">
+          <span class="tag">HTML</span>
+          <span class="tag">CSS</span>
+          <span class="tag">JavaScript</span>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+
+    <!-- SKILLS -->
+    <section id="skills">
+      <h2>Skills</h2>
+      <div class="skills-grid">
+        <div>
+          <div class="skill-item">
+            <div class="skill-label"><span>Programming</span><span>HTML, CSS, Java, Python, DSA</span></div>
+            <div class="bar"><div class="fill" data-target="88"></div></div>
+          </div>
+
+          <div class="skill-item">
+            <div class="skill-label"><span>Data / ML</span><span>Data Structures & Algorithms</span></div>
+            <div class="bar"><div class="fill" data-target="86"></div></div>
+          </div>
+
+          <div class="skill-item">
+            <div class="skill-label"><span>Generative AI</span><span>LLMs, AI Integration</span></div>
+            <div class="bar"><div class="fill" data-target="84"></div></div>
+          </div>
+        </div>
+
+        <div>
+          <div class="skill-item">
+            <div class="skill-label"><span>Tools</span><span>Node.js, MongoDB, Figma</span></div>
+            <div class="bar"><div class="fill" data-target="82"></div></div>
+          </div>
+
+          <div class="skill-item">
+            <div class="skill-label"><span>Web</span><span>HTML, CSS, JavaScript</span></div>
+            <div class="bar"><div class="fill" data-target="80"></div></div>
+          </div>
+
+          <div class="skill-item">
+            <div class="skill-label"><span>Soft skills</span><span>Communication, Teamwork</span></div>
+            <div class="bar"><div class="fill" data-target="78"></div></div>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:14px;color:var(--muted)">Focused on practical web development, DSA, and building clean, user‑friendly interfaces.</div>
+    </section>
+
+    <!-- HOBBIES -->
+    <section id="hobbies">
+      <h2>Interests & Hobbies</h2>
+
+      <div class="hobbies-grid">
+        <div class="hobby"><img class="hobby-img" src="reading.jpg" alt="Reading"><div>Reading (psychology & books)</div></div>
+        <div class="hobby"><img class="hobby-img" src="listening.jpg" alt="Music"><div>Listening to music</div></div>
+        <div class="hobby"><img class="hobby-img" src="nature.jpg" alt="Nature"><div>Enjoying nature</div></div>
+        <div class="hobby"><img class="hobby-img" src="anime.jpg" alt="Anime"><div>Watching animes</div></div>
+        <div class="hobby"><img class="hobby-img" src="exploring.jpg" alt="Tech"><div>Exploring new tech</div></div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <h2>Contact</h2>
+      <div class="contact-grid">
+        <div class="contact-item"><i class="fa fa-envelope" style="width:18px"></i><a href="mailto:bhavaniponde@gmail.com" style="color:var(--accent)">bhavaniponde@gmail.com</a></div>
+        <!-- <div class="contact-item"><i class="fa fa-phone" style="width:18px"></i><span style="color:var(--muted)">+91 8247841219</span></div> -->
+        <div class="contact-item"><i class="fa fa-map-marker-alt" style="width:18px"></i><span style="color:var(--muted)">Dharmavaram, Anantapur, Andhra Pradesh</span></div>
+      </div>
+      <p style="color:var(--muted);margin-top:14px">Or visit: <a href="https://www.linkedin.com/in/bhavaniponde/" style="color:var(--accent)" target="_blank">LinkedIn</a> | <a href="https://github.com/Bhavani8247" style="color:var(--accent)" target="_blank">GitHub</a></p>
+    </section>
+  </main>
+
+  <footer style="text-align:center;padding:18px;color:var(--muted)">© 2025 Ponde Bhavani</footer>
+
+  <div id="toTop" style="display:none;position:fixed;right:20px;bottom:20px;z-index:60">
+    <button class="btn">↑</button>
+  </div>
+
+  <script>
+    // typing name
+    (function(){
+      const el = document.querySelector('#home-title');
+      const name = 'Ponde Bhavani';
+      el.textContent = '';
+      let i=0;
+      (function type(){ if(i<name.length){ el.textContent+=name[i++]; setTimeout(type, 80); } })();
+    })();
+
+    // resume modal (no auto-download)
+    (function(){
+      const open = document.getElementById('openResume');
+      const modal = document.getElementById('resumeModal');
+      const close = document.getElementById('closeResume');
+      open && open.addEventListener('click', ()=> {
+        modal.classList.add('show');
+        modal.setAttribute('aria-hidden','false');
+        document.body.style.overflow='hidden';
+      });
+      close && close.addEventListener('click', ()=> {
+        modal.classList.remove('show');
+        modal.setAttribute('aria-hidden','true');
+        document.body.style.overflow='';
+      });
+      modal && modal.addEventListener('click', e=> {
+        if(e.target===modal) {
+          modal.classList.remove('show');
+          modal.setAttribute('aria-hidden','true');
+          document.body.style.overflow='';
+        }
+      });
+    })();
+
+    // theme toggle
+    (function(){
+      const btn = document.getElementById('theme-toggle');
+      if (!btn) return;
+      btn.addEventListener('click', ()=> {
+        const root = document.documentElement;
+        const cur = root.getAttribute('data-theme') || 'dark';
+        const next = cur === 'dark' ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        btn.textContent = next === 'dark' ? 'Theme' : 'Dark';
+      });
+    })();
+
+    // animate skill fills
+    (function(){
+      const obs = new IntersectionObserver(entries=>{
+        entries.forEach(en=>{
+          if(en.isIntersecting){
+            document.querySelectorAll('.fill').forEach(f=>{
+              const t = parseInt(f.getAttribute('data-target')||0,10);
+              f.style.width = t + '%';
+            });
+            obs.disconnect();
+          }
+        });
+      }, {threshold:0.25});
+      const el = document.getElementById('skills');
+      if(el) obs.observe(el);
+    })();
+
+    // back to top
+    (function(){
+      const btnWrap = document.getElementById('toTop');
+      const btn = btnWrap && btnWrap.querySelector('button');
+      window.addEventListener('scroll', ()=> {
+        if(window.scrollY > 600) btnWrap.style.display = 'block';
+        else btnWrap.style.display = 'none';
+      });
+      btn && btn.addEventListener('click', ()=> window.scrollTo({top:0,behavior:'smooth'}));
+    })();
+
+    // hobby image uploader & persistence (no clear button)
+    (function(){
+      const hobbyImgs = Array.from(document.querySelectorAll('.hobby-img'));
+
+      function loadFromStorage(){
+        try{
+          const stored = JSON.parse(localStorage.getItem('hobbyImages')||'[]');
+          hobbyImgs.forEach((img, i)=>{
+            if(stored[i]){
+              img.src = stored[i];
+              img.style.display='block';
+            }
+          });
+        }catch(e){ console.error(e); }
+      }
+
+      function saveToStorage(arr){
+        localStorage.setItem('hobbyImages', JSON.stringify(arr));
+      }
+
+      input && input.addEventListener('change', ()=>{
+        const files = Array.from(input.files || []);
+        const readers = files.map(file=>{
+          return new Promise(resolve=>{
+            const r = new FileReader();
+            r.onload = ()=> resolve(r.result);
+            r.readAsDataURL(file);
+          });
+        });
+        Promise.all(readers).then(results=>{
+          const stored = JSON.parse(localStorage.getItem('hobbyImages')||'[]');
+          results.forEach((data, i)=>{ stored[i] = data; });
+          hobbyImgs.forEach((img,i)=>{ if(stored[i]){ img.src = stored[i]; img.style.display='block'; } });
+          saveToStorage(stored);
+        });
+      });
+
+      loadFromStorage();
+    })();
+  </script>
+</body>
+</html>
